@@ -1,0 +1,412 @@
+/* ─── fonte ──────────────────────────────────────── */
+@font-face {
+  font-family: "Thock";
+  src: url("fontes/thock-font/Thock-R9eyl.ttf") format("truetype");
+  font-display: swap;
+  /* exclui ã õ ç Ã Õ Ç: nesses caracteres o navegador usa a fonte de texto */
+  unicode-range: U+0020-00C2, U+00C4-00C6, U+00C8-00D4, U+00D6-00E2,
+                 U+00E4-00E6, U+00E8-00F4, U+00F6-00FF;
+}
+
+/* ─── variáveis ──────────────────────────────────── */
+:root {
+  --fundo: #ccdfd3;
+  --fundo-escuro: #2b2b2b;
+  --texto: #2b2b2b;
+  --texto-claro: #ffffff;
+  --destaque: #56194F;
+  --destaque-escuro: #260B2C;
+  --raio: 12px;
+
+  --fonte-titulo: "Thock", "Nunito", sans-serif;
+  --fonte-texto: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ─── logo / header ──────────────────────────── */
+  --altura-header: 72px;
+  --margem-header: 20px;
+  --logo-grande: clamp(140px, 28vw, 260px);
+  --logo-pequena: 52px;
+}
+
+/* ─── reset ──────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--fundo);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+/* ─── títulos ────────────────────────────────────── */
+h1, h2, h3,
+.menu-lateral a {
+  font-family: var(--fonte-titulo);
+}
+
+h1 { font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.1; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 1.5rem; text-align: center; }
+h3 { font-size: 1.25rem; }
+
+/* ─── header ─────────────────────────────────────── */
+header {
+  --progresso: 0; /* 0 = topo da página, 1 = rolou tudo. O JS atualiza. */
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--altura-header);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--margem-header);
+}
+
+/* fundo desfocado: vai aparecendo conforme a rolagem */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #D46059;
+  backdrop-filter: blur(6px);
+  opacity: var(--progresso);
+}
+
+/* ─── logo ───────────────────────────────────────── */
+/* posição, tamanho e deslocamento são calculados a partir do --progresso:
+   valor = (valor do topo × (1 − progresso)) + (valor final × progresso) */
+.Logo {
+  position: fixed;
+  top: calc(40% * (1 - var(--progresso)) + (var(--altura-header) / 2) * var(--progresso));
+  left: calc(50% * (1 - var(--progresso)) + var(--margem-header) * var(--progresso));
+  transform: translate(calc(-50% * (1 - var(--progresso))), -50%);
+}
+
+.Logo img {
+  height: calc(var(--logo-grande) + (var(--logo-pequena) - var(--logo-grande)) * var(--progresso));
+  width: auto;
+  border-radius: 8px;
+}
+
+/* ─── botão do menu ──────────────────────────────── */
+#btnMenu {
+  margin-left: auto;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 10px;
+  color: var(--texto-claro); /* reserva, caso o navegador não entenda color-mix */
+  /* mistura branco (topo) → escuro (depois de rolar) */
+  color: color-mix(in srgb, var(--texto) calc(var(--progresso) * 100%), var(--texto-claro));
+}
+
+#btnMenu:hover,
+#btnMenu:focus-visible {
+  color: var(--destaque);
+}
+
+/* ─── menu lateral ───────────────────────────────── */
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(280px, 80vw);
+  padding: 70px 24px 24px;
+  background: var(--fundo-escuro);
+  color: var(--texto-claro);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.menu-lateral.aberto {
+  transform: translateX(0);
+}
+
+.menu-lateral ul {
+  list-style: none;
+}
+
+.menu-lateral a {
+  display: block;
+  padding: 12px 8px;
+  color: var(--texto-claro);
+  font-size: 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu-lateral a:hover,
+.menu-lateral a:focus-visible {
+  background: var(--destaque);
+  color: var(--fundo-escuro);
+}
+
+#btnFechar {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 2rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--texto-claro);
+  cursor: pointer;
+}
+
+/* ─── tela inicial ───────────────────────────────── */
+.tela-inicial {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 100px 20px 12vh;
+  text-align: center;
+  color: var(--texto-claro);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url("../Image/Fundo.jpg") center / cover no-repeat;
+}
+
+.tela-inicial p {
+  font-size: 1.3rem;
+}
+
+/* ─── apresentação ───────────────────────────────── */
+.apresentacao {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* ─── cards ──────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #e6e6e6;
+}
+
+.card h3 {
+  padding: 12px 14px 4px;
+}
+
+.card p {
+  padding: 0 14px 14px;
+}
+
+/* ─── personagens ────────────────────────────────── */
+.personagens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  align-content: start;
+  padding: 80px 20px;
+  background: rgba(157, 150, 212, 0.18);
+}
+
+.personagens h2 {
+  grid-column: 1 / -1;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.personagens .card {
+  position: relative;
+}
+
+/* texto aparece ao passar o cursor (ou ao focar) */
+.personagens .card p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px;
+  background: rgba(43, 43, 43, 0.88);
+  color: var(--texto-claro);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.personagens .card:hover p,
+.personagens .card:focus-within p {
+  transform: translateY(0);
+}
+
+/* em telas de toque não existe hover: mostra o texto sempre */
+@media (hover: none) {
+  .personagens .card p {
+    position: static;
+    transform: none;
+    background: none;
+    color: var(--texto);
+  }
+}
+
+/* ─── mundo / carrossel ──────────────────────────── */
+.mundo {
+  padding: 80px 20px;
+}
+
+.carrossel {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.janela {
+  overflow: hidden;
+  border-radius: var(--raio);
+}
+
+.faixa {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.faixa .card {
+  flex: 0 0 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.faixa .card img {
+  aspect-ratio: 16 / 9;
+}
+
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(43, 43, 43, 0.75);
+  color: var(--texto-claro);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.seta:hover,
+.seta:focus-visible {
+  background: var(--destaque-escuro);
+}
+
+.seta.esquerda { left: 10px; }
+.seta.direita  { right: 10px; }
+
+/* ─── arrecadação ────────────────────────────────── */
+.arrecadacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 80px 20px;
+  text-align: center;
+  background: rgba(157, 150, 212, 0.18);
+}
+
+.arrecadacao a {
+  color: var(--destaque-escuro);
+}
+
+#chavePix {
+  font-weight: bold;
+}
+
+#btnCopiarPix {
+  margin-left: 8px;
+  padding: 4px 14px;
+  border: none;
+  border-radius: 999px;
+  background: var(--destaque-escuro);
+  color: var(--texto-claro);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#btnCopiarPix:hover,
+#btnCopiarPix:focus-visible {
+  background: var(--fundo-escuro);
+}
+
+/* ─── footer ─────────────────────────────────────── */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 28px 20px;
+  background: var(--fundo-escuro);
+  color: var(--texto-claro);
+  text-align: center;
+}
+
+footer a {
+  color: var(--destaque);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ─── responsivo ─────────────────────────────────── */
+@media (max-width: 600px) {
+  :root {
+    --altura-header: 60px;
+    --margem-header: 14px;
+    --logo-pequena: 42px;
+  }
+
+  .apresentacao,
+  .personagens,
+  .mundo,
+  .arrecadacao {
+    padding-block: 56px;
+  }
+}

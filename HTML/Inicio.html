@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tales Of Aurora: ">
+    <title>Tales of Aurora</title>
+    <link rel="stylesheet" href="../CSS/Dionisio.css">
+    <script src="../js/Heaven.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ─── header ───────────────────────────────────── -->
+    <header>
+
+        <a href="#inicio" class="Logo">
+            <img src="../Image/Logo.png" alt="Tales Of Aurora">
+        </a>
+
+        <button id="btnMenu" type="button" aria-label="Abrir menu" aria-controls="menuLateral"
+            aria-expanded="false">☰</button>
+
+        <nav id="menuLateral" class="menu-lateral" aria-label="Menu principal">
+
+            <button id="btnFechar" type="button" aria-label="Fechar menu">×</button>
+
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#personagens">Personagens</a></li>
+                <li><a href="#mundo">Mundo</a></li>
+                <li><a href="#apoia">Apoia-se</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <!-- ─── início ───────────────────────────────────── -->
+        <section id="inicio" class="tela-inicial">
+            <h1>Tales Of Aurora</h1>
+            <p>Um RPG de fantasia protagonizado por cachorros.</p>
+        </section>
+
+        <!-- ─── história ─────────────────────────────────── -->
+        <section id="historia" class="apresentacao">
+            <h2>A História</h2>
+            <p>
+                Texto de apresentação: como o jogo vai ser, o que se pode encontrar
+                e a ideia original de RPG/Fantasia.
+            </p>
+        </section>
+
+        <!-- ─── personagens ──────────────────────────────── -->
+        <section id="personagens" class="personagens">
+
+            <h2>Personagens</h2>
+
+            <article class="card">
+                <img src="../Image/Foracio.jpg" alt="Foracio" loading="lazy">
+                <h3>Foracio</h3>
+                <p>Descrição do Foracio.</p>
+            </article>
+
+            <article class="card">
+                <img src="../Image/LinVin.jpg" alt="Lin Vin" loading="lazy">
+                <h3>Lin Vin</h3>
+                <p>Descrição da Lin Vin.</p>
+            </article>
+
+            <article class="card">
+                <img src="../Image/Roberswaldo.jpg" alt="Roberswaldo" loading="lazy">
+                <h3>Roberswaldo</h3>
+                <p>Descrição do Roberswaldo.</p>
+            </article>
+
+            <article class="card">
+                <img src="../Image/Ursula.jpg" alt="Ursula" loading="lazy">
+                <h3>Ursula</h3>
+                <p>Descrição da Ursula.</p>
+            </article>
+
+            <article class="card">
+                <img src="../Image/MrPuTerrier.jpg" alt="Mr. Pu Terrier" loading="lazy">
+                <h3>Mr. Pu Terrier</h3>
+                <p>Descrição do Mr. Pu Terrier.</p>
+            </article>
+
+            <article class="card">
+                <img src="../Image/Aurora.jpg" alt="Aurora" loading="lazy">
+                <h3>Aurora</h3>
+                <p>Descrição da Aurora.</p>
+            </article>
+
+        </section>
+
+        <!-- ─── mundo ────────────────────────────────────── -->
+        <section id="mundo" class="mundo">
+
+            <h2>O Mundo</h2>
+
+            <div class="carrossel">
+
+                <button class="seta esquerda" id="anterior" type="button"
+                    aria-label="Cenário anterior">&#10094;</button>
+
+                <div class="janela">
+                    <div class="faixa" id="faixa">
+
+                        <article class="card">
+                            <img src="../Image/Tales.jpg" alt="Concept Art dos Personagens" loading="lazy">
+                            <h3>Concept Art dos Personagens</h3>
+                            <p>Descrição do local e das criaturas encontradas.</p>
+                        </article>
+
+                        <article class="card">
+                            <img src="../Image/Mundo02.jpg" alt="Cenário 02" loading="lazy">
+                            <h3>Cenário 02</h3>
+                            <p>Descrição do local e das criaturas encontradas.</p>
+                        </article>
+
+                        <article class="card">
+                            <img src="../Image/Mundo03.jpg" alt="Cenário 03" loading="lazy">
+                            <h3>Cenário 03</h3>
+                            <p>Descrição do local e das criaturas encontradas.</p>
+                        </article>
+
+                        <article class="card">
+                            <img src="../Image/Mundo04.jpg" alt="Cenário 04" loading="lazy">
+                            <h3>Cenário 04</h3>
+                            <p>Descrição do local e das criaturas encontradas.</p>
+                        </article>
+
+                    </div>
+                </div>
+
+                <button class="seta direita" id="proximo" type="button" aria-label="Próximo cenário">&#10095;</button>
+
+            </div>
+
+        </section>
+
+        <!-- Experimente a demo! -->
+        <section id="demo" class="demo">s
+            <h2>Experimente a demonstração!</h2>
+
+        </section>
+
+        <!-- ─── apoia-se ─────────────────────────────────── -->
+        <section id="apoia" class="arrecadacao">
+
+            <h2>Ajude esse projeto</h2>
+
+            <p>
+                PIX: <span id="chavePix">(11) 94002-8922</span>
+                <button id="btnCopiarPix" type="button">Copiar</button>
+            </p>
+
+            <p>
+                E-mail:
+                <a href="mailto:SextetoNaoTaoSinistro@gmail.com">SextetoNaoTaoSinistro@gmail.com</a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- ─── footer ───────────────────────────────────── -->
+    <footer>
+        <a href="#inicio" class="rodape-inicio">Início</a>
+        <p class="rodape-copy">© 2026, Sexteto. Tales Of Aurora</p>
+    </footer>
+
+</body>
+
+</html>
