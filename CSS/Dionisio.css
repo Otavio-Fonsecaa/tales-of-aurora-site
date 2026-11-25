@@ -92,7 +92,7 @@ header::before {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: #D46059;
+  background:linear-gradient(#f2d398, #cac65e);
   backdrop-filter: blur(6px);
   opacity: var(--progresso);
 }
@@ -212,10 +212,11 @@ header::before {
 }
 
 /* ─── cards ──────────────────────────────────────── */
-.card {
+.card{
   background: #fff;
   border-radius: var(--raio);
   overflow: hidden;
+  height: 107.5%;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
