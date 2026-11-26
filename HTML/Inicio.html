@@ -14,7 +14,6 @@
 
     <!-- ─── header ───────────────────────────────────── -->
     <header>
-
         <a href="#inicio" class="Logo">
             <img src="../Image/Logo.png" alt="Tales Of Aurora">
         </a>
@@ -145,10 +144,28 @@
 
         </section>
 
-        <!-- Experimente a demo! -->
-        <section id="demo" class="demo">s
+        <!-- ─── demo jogável ─────────────────────────────── -->
+        <section id="demo" class="demo">
             <h2>Experimente a demonstração!</h2>
 
+            <p class="demo-texto">
+                Jogue um trecho beta de Tales Of Aurora.
+            </p>
+
+            <div class="demo-capa">
+                <img src="../Image/Tales.jpg" alt="" loading="lazy">
+                <button id="btnJogar" type="button" aria-haspopup="dialog">▶ Jogar agora</button>
+            </div>
+
+            <!-- ajuste as teclas conforme o seu projeto no Godot -->
+            <ul class="demo-controles" aria-label="Controles">
+                <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Mover</li>
+                <li><kbd>Esc</kbd> Pausar</li>
+            </ul>
+
+            <p class="demo-aviso">
+                Esta demo foi pensada para teclado e mouse. No celular a experiência pode não funcionar bem.
+            </p>
         </section>
 
         <!-- ─── apoia-se ─────────────────────────────────── -->
@@ -163,12 +180,28 @@
 
             <p>
                 E-mail:
-                <a href="mailto:SextetoNaoTaoSinistro@gmail.com">SextetoNaoTaoSinistro@gmail.com</a>
+                <a href="SextetoNaoTaoSinistro@gmail.com">SextetoNaoTaoSinistro@gmail.com</a>
             </p>
 
         </section>
 
     </main>
+
+    <!-- ─── janela da demo (Godot) ───────────────────── -->
+    <dialog id="janelaDemo" class="janela-demo" aria-labelledby="tituloDemo">
+        <div class="janela-demo-barra">
+            <span id="tituloDemo">Tales Of Aurora — Demo</span>
+            <div class="janela-demo-acoes">
+                <button id="btnTelaCheia" type="button" aria-label="Tela cheia">⛶</button>
+                <a id="linkNovaAba" href="../demo/index.html" target="_blank" rel="noopener">Nova aba</a>
+                <button id="btnFecharDemo" type="button" aria-label="Fechar demo">×</button>
+            </div>
+        </div>
+        <div class="janela-demo-tela">
+            <iframe id="quadroDemo" title="Demo jogável de Tales Of Aurora"
+                allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
+        </div>
+    </dialog>
 
     <!-- ─── footer ───────────────────────────────────── -->
     <footer>

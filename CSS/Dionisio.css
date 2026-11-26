@@ -92,7 +92,7 @@ header::before {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:linear-gradient(#f2d398, #cac65e);
+  background:linear-gradient(#2d2e2e);
   backdrop-filter: blur(6px);
   opacity: var(--progresso);
 }
@@ -112,6 +112,7 @@ header::before {
   width: auto;
   border-radius: 8px;
 }
+
 
 /* ─── botão do menu ──────────────────────────────── */
 #btnMenu {
@@ -205,10 +206,12 @@ header::before {
 
 /* ─── apresentação ───────────────────────────────── */
 .apresentacao {
-  max-width: 800px;
+  max-width: auto;
   margin: 0 auto;
   padding: 80px 20px;
   text-align: center;
+  background: linear-gradient(#f2d398, #e299f2);
+  
 }
 
 /* ─── cards ──────────────────────────────────────── */
@@ -242,7 +245,7 @@ header::before {
   gap: 24px;
   align-content: start;
   padding: 80px 20px;
-  background: rgba(157, 150, 212, 0.18);
+  background: linear-gradient(#e299f2, #8c0e36);
 }
 
 .personagens h2 {
@@ -286,6 +289,7 @@ header::before {
 /* ─── mundo / carrossel ──────────────────────────── */
 .mundo {
   padding: 80px 20px;
+  background: linear-gradient(#8c0e36, #3C6E71);
 }
 
 .carrossel {
@@ -347,7 +351,7 @@ header::before {
   gap: 10px;
   padding: 80px 20px;
   text-align: center;
-  background: rgba(157, 150, 212, 0.18);
+  background:linear-gradient(#f2d398, #cac65e);
 }
 
 .arrecadacao a {
@@ -381,8 +385,8 @@ footer {
   align-items: center;
   gap: 6px;
   padding: 28px 20px;
-  background: var(--fundo-escuro);
-  color: var(--texto-claro);
+  background:linear-gradient(#cac65e);
+  color: black;
   text-align: center;
 }
 
@@ -410,4 +414,158 @@ footer a:hover {
   .arrecadacao {
     padding-block: 56px;
   }
+}
+
+/* ─── demo jogável ───────────────────────────────── */
+.demo {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(#3C6E71,#f2d398);
+}
+
+.demo-texto {
+  margin-bottom: 24px;
+}
+
+.demo-capa {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.demo-capa img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+#btnJogar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 14px 32px;
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--destaque);
+  color: var(--texto-claro);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#btnJogar:hover,
+#btnJogar:focus-visible {
+  background: var(--destaque-escuro);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.demo-controles {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 28px;
+  margin-top: 24px;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 28px;
+  margin-right: 4px;
+  padding: 2px 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-bottom-width: 3px;
+  border-radius: 6px;
+}
+
+/* aviso só aparece em telas de toque */
+.demo-aviso {
+  display: none;
+  margin-top: 16px;
+  font-size: 0.9rem;
+}
+
+@media (pointer: coarse) {
+  .demo-aviso { display: block; }
+}
+
+/* ─── janela da demo ─────────────────────────────── */
+/* ajuste --proporcao para a resolução do seu projeto no Godot
+   (1280×720 = 16 / 9) */
+.janela-demo {
+  --proporcao: 16 / 9;
+
+  margin: auto;
+  width: min(1100px, 96vw);
+  padding: 0;
+  border: none;
+  border-radius: var(--raio);
+  overflow: hidden;
+  background: var(--fundo-escuro);
+  color: var(--texto-claro);
+}
+
+.janela-demo::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.janela-demo-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  font-family: var(--fonte-titulo);
+}
+
+.janela-demo-acoes {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.janela-demo-acoes a {
+  color: var(--texto-claro);
+  font-size: 0.9rem;
+}
+
+.janela-demo-acoes button {
+  background: none;
+  border: none;
+  color: var(--texto-claro);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.janela-demo-acoes button:hover,
+.janela-demo-acoes button:focus-visible {
+  color: #f2d398;
+}
+
+.janela-demo-tela {
+  width: 100%;
+  aspect-ratio: var(--proporcao);
+  /* garante que cabe na altura da tela */
+  max-height: calc(100vh - 80px);
+  background: #000;
+}
+
+.janela-demo-tela iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }

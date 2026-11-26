@@ -137,3 +137,42 @@ if (cabecalho) {
     atual = alvo;
     aplicarProgresso();
 }
+
+// ─── janela da demo (Godot) ─────────────────────────
+// caminho do index.html exportado pelo Godot (relativo a HTML/Inicio.html)
+const URL_DEMO = '../demo/index.html';
+
+const btnJogar      = document.getElementById('btnJogar');
+const janelaDemo    = document.getElementById('janelaDemo');
+const quadroDemo    = document.getElementById('quadroDemo');
+const btnFecharDemo = document.getElementById('btnFecharDemo');
+const btnTelaCheia  = document.getElementById('btnTelaCheia');
+
+function abrirDemo() {
+    // só carrega o jogo agora (evita baixar dezenas de MB sem o jogador pedir)
+    quadroDemo.src = URL_DEMO;
+    janelaDemo.showModal();
+}
+
+function fecharDemo() {
+    janelaDemo.close();
+}
+
+if (btnJogar && janelaDemo && quadroDemo) {
+    btnJogar.addEventListener('click', abrirDemo);
+    btnFecharDemo.addEventListener('click', fecharDemo);
+
+    // ao fechar (botão ou Esc): descarrega o jogo, parando som e processamento
+    janelaDemo.addEventListener('close', () => {
+        quadroDemo.src = 'about:blank';
+    });
+
+    // dá o foco ao jogo assim que carregar, para o teclado funcionar de cara
+    quadroDemo.addEventListener('load', () => {
+        quadroDemo.focus();
+    });
+
+    btnTelaCheia.addEventListener('click', () => {
+        if (quadroDemo.requestFullscreen) quadroDemo.requestFullscreen();
+    });
+}
