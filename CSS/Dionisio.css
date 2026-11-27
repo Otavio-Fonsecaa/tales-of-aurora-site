@@ -210,8 +210,10 @@ header::before {
   margin: 0 auto;
   padding: 80px 20px;
   text-align: center;
-  background: linear-gradient(#f2d398, #e299f2);
-  
+  background: linear-gradient(#9da33e,#fcfa9f);
+  color: #000000;
+  gap: 12px;
+  font-size: 1.2rem;
 }
 
 /* ─── cards ──────────────────────────────────────── */
@@ -245,7 +247,7 @@ header::before {
   gap: 24px;
   align-content: start;
   padding: 80px 20px;
-  background: linear-gradient(#e299f2, #8c0e36);
+  background: linear-gradient(#fcfa9f, #8c0e36);
 }
 
 .personagens h2 {
